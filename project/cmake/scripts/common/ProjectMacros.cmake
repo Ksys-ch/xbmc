@@ -28,7 +28,9 @@ endfunction()
 function(copy_skin_to_buildtree skin)
   file(GLOB_RECURSE FILES ${skin}/*)
   file(GLOB_RECURSE MEDIA_FILES ${skin}/media/*)
-  list(REMOVE_ITEM FILES ${MEDIA_FILES})
+  if(EXISTS "${skin}/media/Makefile.in")
+    list(REMOVE_ITEM FILES ${MEDIA_FILES})
+  endif()
   foreach(file ${FILES})
     copy_file_to_buildtree(${file})
   endforeach()
@@ -46,7 +48,7 @@ function(copy_skin_to_buildtree skin)
 endfunction()
 
 # Get GTest tests as CMake tests.
-# Copied from FindGTest.cmake 
+# Copied from FindGTest.cmake
 # Thanks to Daniel Blezek <blezek@gmail.com> for the GTEST_ADD_TESTS code
 function(GTEST_ADD_TESTS executable extra_args)
     if(NOT ARGN)
