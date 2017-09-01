@@ -121,7 +121,7 @@ NWAOBJSXBMC=	xbmc/threads/threads.a \
 		xbmc/commons/commons.a
 
 ifeq (@USE_OPTICAL_DRIVE@,1)
-DIRECTORY_ARCHIVES += xbmc/cdrip/cdrip.a 
+DIRECTORY_ARCHIVES += xbmc/cdrip/cdrip.a
 endif
 
 ifeq (@USE_WEB_SERVER@,1)
@@ -233,6 +233,9 @@ SKIN_DIRS=$(ESTUARY_MEDIA)
 ESTOUCHY_MEDIA=addons/skin.estouchy/media
 SKIN_DIRS+=$(ESTOUCHY_MEDIA)
 
+KSYS_MEDIA=addons/skin.ksys/media
+SKIN_DIRS+=$(KSYS_MEDIA)
+
 LIBS=@LIBS@
 CFLAGS=@CFLAGS@
 CXXFLAGS=@CXXFLAGS@
@@ -314,6 +317,7 @@ ifeq (@USE_TEXTUREPACKER@,1)
 skins: @TEXTUREPACKER@
 	 $(MAKE) -C $(ESTUARY_MEDIA)
 	 $(MAKE) -C $(ESTOUCHY_MEDIA)
+	 $(MAKE) -C $(KSYS_MEDIA)
 else
 skins:
 endif
